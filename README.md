@@ -14,14 +14,19 @@ pi install npm:@joelazar/lazygit
 
 ## Usage
 
-| Trigger        | What it does           |
-| -------------- | ---------------------- |
-| `/lazygit`     | Opens lazygit in `cwd` |
-| `ctrl+shift+g` | Same, without typing   |
+| Trigger        | What it does                                   |
+| -------------- | ---------------------------------------------- |
+| `/lazygit`     | Opens lazygit in `cwd`                         |
+| `space+g` | Same, without typing (vim normal mode only)    |
 
 lazygit runs in pi's current working directory, so it picks up whichever repo the session is pointed at.
 
 The command only works in interactive TUI mode. In `print`, `json`, or `rpc` mode it reports an error instead of hanging on a terminal that isn't there.
+
+## pi-vim
+
+With [pi-vim](https://github.com/joelazar/pi-vim) installed, shortcut only
+fires in **normal** mode.
 
 ## Rebinding the shortcut
 
