@@ -14,18 +14,18 @@ pi install npm:@joelazar/lazygit
 
 ## Usage
 
-| Trigger        | What it does           |
-| -------------- | ---------------------- |
-| `/lazygit`     | Opens lazygit in `cwd` |
-| `ctrl+shift+g` | Same, without typing   |
+| Trigger                | What it does                                             |
+| ---------------------- | -------------------------------------------------------- |
+| `/lazygit`             | Opens lazygit in `cwd`                                   |
+| `<leader>g`            | Same, in pi-vim's normal mode (see [pi-vim](#pi-vim))    |
 
 lazygit runs in pi's current working directory, so it picks up whichever repo the session is pointed at.
 
 The command only works in interactive TUI mode. In `print`, `json`, or `rpc` mode it reports an error instead of hanging on a terminal that isn't there.
 
-## Rebinding the shortcut
+## pi-vim
 
-`ctrl+shift+g` is registered by the extension, and you can remap it in `~/.pi/agent/keybindings.json` like any other pi shortcut.
+With [pi-vim](https://github.com/IgnatSergeev/pi-vim) installed, this extension registers a `<leader>g` keymap through pi-vim's API. The keymap is triggered in normal mode only.
 
 ## License
 

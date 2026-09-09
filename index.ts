@@ -1,9 +1,11 @@
 /**
  * pi-lazygit - open lazygit from inside pi.
  *
- * `/lazygit` (or ctrl+shift+g) suspends pi's TUI, hands lazygit the whole
+ * `/lazygit` suspends pi's TUI, hands lazygit the whole
  * terminal, and restores pi when lazygit exits.
- */
+ *
+ * When pi-vim is installed registers a `<leader>g` keymap through pi-vim's api.
+*/
 
 import { spawnSync } from "node:child_process";
 import type {
@@ -12,7 +14,8 @@ import type {
 } from "@earendil-works/pi-coding-agent";
 
 const COMMAND = "lazygit";
-const SHORTCUT = "ctrl+shift+g";
+const VIM_API_EVENT = "pi-vim:api";
+const VIM_KEYMAP = "<leader>g";
 
 /** Suspend the TUI, run lazygit inheriting stdio, then restore the TUI. */
 function runLazygit(ctx: ExtensionContext): Promise<number | null> {
@@ -52,10 +55,7 @@ export default function (pi: ExtensionAPI) {
     },
   });
 
-  pi.registerShortcut(SHORTCUT, {
-    description: "Open lazygit",
-    handler: async (ctx) => {
-      await open(ctx);
-    },
+  pi.events.on(VIM_API_EVENT, (piVim) => {
+    piVim.keymap.set(VIM_KEYMAP, `:${COMMAND}<CR>`, "Open lazygit");
   });
 }
